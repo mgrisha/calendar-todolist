@@ -1,0 +1,95 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  &-add-event {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background-color: #00a9cf;
+    cursor: pointer;
+    box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, .5);
+    transition: box-shadow .3s;
+
+    &:hover {
+      box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, .5);
+    }
+
+    svg {
+      fill: #fff;
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  &-calendar {
+    display: flex;
+    align-items: center;
+    
+    &__month-year {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .month-year {
+      &__prev,
+      &__next {
+        padding: .5rem;
+        cursor: pointer;
+
+        svg {
+          transition: fill .3s;
+        }
+
+        &:hover {
+          svg {
+            fill: #00a9cf;
+          }
+        }
+      }
+
+      &__text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 125px;;
+      }
+    }
+
+    &__datepicker {
+      cursor: pointer;
+      position: relative;
+
+      svg {
+        transition: fill .3s;
+      }
+
+      &:hover {
+        svg {
+          fill: #00a9cf;
+        }
+      }
+
+      input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        height: auto;
+        color: transparent;
+        background: transparent;
+        visibility: hidden;
+      }
+    }
+  }
+}

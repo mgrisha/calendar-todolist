@@ -1,0 +1,124 @@
+.popup-event {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 169, 207, 0.8);
+  padding: 30px 50px;
+  min-width: 350px;
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    visibility: hidden;
+    transition: visibility .3s;
+
+    &.active {
+      visibility: visible;
+    }
+  }
+  
+  &__content {
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &-title {
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__close {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__form {
+    margin-top: 15px;
+    color: #444;
+    display: flex;
+    flex-direction: column;
+
+    .form-item {
+      display: flex;
+      flex-direction: column;
+
+      &:not(:first-child) {
+        margin-top: 10px;
+      }
+
+      &__label {
+        font-size: 12px;
+
+        sup {
+          color: tomato;
+        }
+      }
+
+      &__input {
+        outline: unset;
+        border: none;
+        border-bottom: 1px solid #444;
+        margin-top: 2px;
+        padding: 5px 0;
+        font-size: 14px;
+        transition: border-color .3s;
+
+        &::-webkit-input-placeholder,
+        &::-webkit-datetime-edit {
+          transition: color .3s;
+        }
+
+
+
+        &.error {
+          border-color: tomato;
+
+          &::-webkit-input-placeholder,
+          &::-webkit-datetime-edit {
+            color: tomato;
+          }
+        }
+      }
+
+      &__textarea {
+        outline: unset;
+        border: none;
+        border-bottom: 1px solid #444;
+        resize: none;
+        margin-top: 2px;
+        padding: 5px 0;
+        font-size: 14px;
+      }
+
+      &__button {
+        border: 1px solid #00a9cf;
+        border-radius: 4px;
+        outline: none;
+        color: #000;
+        padding: 5px 10px;
+        background: none;
+        margin-top: 30px;
+        align-self: flex-end;
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1px;
+
+  @media screen and (min-width: 568px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media screen and (min-width: 1280px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @media screen and (min-width: 1560px) {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
