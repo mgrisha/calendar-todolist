@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef } from 'react';
 import clsx from 'clsx';
+import axios from 'axios';
 
 import { getUID } from '../../utils/functions';
 
@@ -37,7 +38,7 @@ const PopupEvent = () => {
     };
   }, [popupEvent]);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const classError = styles['error'];
     const title = e.target.title;
@@ -65,6 +66,9 @@ const PopupEvent = () => {
       const tempEvents = [...events];
       tempEvents[findIndex] = findItem;
       newEvents = tempEvents;
+      await axios.put(`http://localhost:7000/todoList/${editId}`, findItem, {
+        headers: { 'Content-Type': 'application/json' }
+      });
     } else {
       const newItem = {
         id,
@@ -72,6 +76,9 @@ const PopupEvent = () => {
         description: description.value,
         date: date.value
       }
+      await axios.post('http://localhost:7000/todoList', newItem, {
+        headers: { 'Content-Type': 'application/json' }
+      });
       newEvents = [...events, newItem];
     }
     

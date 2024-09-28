@@ -1,4 +1,5 @@
 import { useEffect, useState, createContext, useMemo } from 'react';
+import axios from 'axios';
 
 import { returnNewDateFormat } from '../utils/functions';
 
@@ -17,13 +18,20 @@ const StoreContextProvider = (props) => {
   const d = new Date();
   const fullYearMonth = returnNewDateFormat(d);
 
+  const fetchData = async () => {
+    const response = await axios('http://localhost:7000/todoList');
+    let newEvents = response.data;
+    setEvents(newEvents);
+  }
+
   useEffect(() => {
     const localStorageDate = localStorage.getItem('date') || fullYearMonth;
-
     setDate(localStorageDate);
+    fetchData();
   }, []);
 
-  const deleteEvent = (id) => {
+  const deleteEvent = async (id) => {
+    await axios.delete(`http://localhost:7000/todoList${id}`);
     setEvents(prevEvent => prevEvent.filter(event => event.id !== id))
   }
 
