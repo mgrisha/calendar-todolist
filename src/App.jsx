@@ -1,13 +1,13 @@
-import { useContext } from 'react'
+import { useContext } from "react";
 
-import './App.scss'
-import Calendar from './components/calendar'
-import Header from './components/header'
-import PopupEvent from './components/popup-event'
+import "./App.scss";
+import Calendar from "./components/calendar";
+import Header from "./components/header";
+import PopupEvent from "./components/popup-event";
 
-import { StoreContext } from './context/StoreContext';
+import { StoreContext } from "./context/StoreContext";
 
-import { getAllDaysInMonth } from './utils/functions'
+import { getAllDaysInMonth } from "./utils/functions";
 
 function App() {
   const { popupEvent, date } = useContext(StoreContext);
@@ -18,11 +18,9 @@ function App() {
     <div className="calendar-app">
       <Header />
       <Calendar allDaysMonth={allDatesInMonth} />
-      {
-        popupEvent && <PopupEvent />
-      }
+      {popupEvent && <PopupEvent />}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,56 +1,56 @@
-import { useEffect, useState, createContext, useMemo } from 'react';
-import axios from 'axios';
+import { useEffect, useState, createContext, useMemo } from "react";
+import axios from "axios";
 
-import { returnNewDateFormat } from '../utils/functions';
+import { returnNewDateFormat } from "../utils/functions";
 
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState("");
   const [popupEvent, setPopupEvent] = useState(false);
   const [events, setEvents] = useState([]);
   const [eventItem, setEventItem] = useState({
-    id: '',
-    title: '',
-    description: '',
-    date: ''
+    id: "",
+    title: "",
+    description: "",
+    date: "",
   });
   const d = new Date();
   const fullYearMonth = returnNewDateFormat(d);
 
   const fetchData = async () => {
-    const response = await axios('http://localhost:7000/todoList');
+    const response = await axios("https://db48fe38d086e78d.mokky.dev/todos");
     let newEvents = response.data;
     setEvents(newEvents);
-  }
+  };
 
   useEffect(() => {
-    const localStorageDate = localStorage.getItem('date') || fullYearMonth;
+    const localStorageDate = localStorage.getItem("date") || fullYearMonth;
     setDate(localStorageDate);
     fetchData();
   }, []);
 
   const deleteEvent = async (id) => {
-    await axios.delete(`http://localhost:7000/todoList${id}`);
-    setEvents(prevEvent => prevEvent.filter(event => event.id !== id))
-  }
+    await axios.delete(`https://db48fe38d086e78d.mokky.dev/todos/${id}`);
+    setEvents((prevEvent) => prevEvent.filter((event) => event.id !== id));
+  };
 
   const editEventItem = (e, id) => {
     e.stopPropagation();
-    const findItem = events.find(event => event.id === id);
+    const findItem = events.find((event) => event.id === id);
     setEventItem(findItem);
     setPopupEvent(true);
-  }
+  };
 
   const addEventItemByDate = (date) => {
     setEventItem({
-      id: '',
-      title: '',
-      description: '',
-      date
+      id: "",
+      title: "",
+      description: "",
+      date,
     });
     setPopupEvent(true);
-  }
+  };
 
   const contextValue = useMemo(
     () => ({
@@ -64,7 +64,7 @@ const StoreContextProvider = (props) => {
       setEventItem,
       deleteEvent,
       editEventItem,
-      addEventItemByDate
+      addEventItemByDate,
     }),
     [
       date,
@@ -77,13 +77,15 @@ const StoreContextProvider = (props) => {
       setEventItem,
       deleteEvent,
       editEventItem,
-      addEventItemByDate
+      addEventItemByDate,
     ]
-  )
+  );
 
   return (
-    <StoreContext.Provider value={contextValue}>{props.children}</StoreContext.Provider>
-  )
-}
+    <StoreContext.Provider value={contextValue}>
+      {props.children}
+    </StoreContext.Provider>
+  );
+};
 
 export default StoreContextProvider;
