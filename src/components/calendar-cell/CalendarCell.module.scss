@@ -1,13 +1,13 @@
 .calendar-cell {
   // border: 1px solid #b8b8b8;
-	outline: 1px solid #b8b8b8;
-	text-align: center;
-	position: relative;
-	z-index: 1;
-  padding: 1rem .75rem;
+  outline: 1px solid #b8b8b8;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 1rem 0.75rem;
   font-size: 14px;
   min-height: 200px;
-  transition: background-color .3s;
+  transition: background-color 0.3s;
   cursor: pointer;
 
   &.active,
