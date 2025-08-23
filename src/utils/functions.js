@@ -1,11 +1,11 @@
-function returnNewDateFormat (date) {
+function returnNewDateFormat(date) {
   const month = (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1);
   const year = date.getFullYear();
   const newDate = year + '-' + month;
   return newDate;
 }
 
-function returnDateTimeFormat (date) {
+function returnDateTimeFormat(date) {
   const day = (date.getDate() < 9 ? '0' : '') + date.getDate();
   const month = (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1);
   const year = date.getFullYear();
@@ -25,4 +25,4 @@ function getUID() {
   return Date.now().toString(36);
 }
 
-export { returnNewDateFormat, getUID, getAllDaysInMonth, returnDateTimeFormat }
+export { returnNewDateFormat, getUID, getAllDaysInMonth, returnDateTimeFormat };
