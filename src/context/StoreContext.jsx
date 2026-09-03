@@ -30,6 +30,7 @@ const StoreContextProvider = (props) => {
     fetchData();
   }, []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const deleteEvent = async (id) => {
     await axios.delete(`https://db48fe38d086e78d.mokky.dev/todos/${id}`);
     setEvents((prevEvent) => prevEvent.filter((event) => event.id !== id));
